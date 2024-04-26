@@ -1,0 +1,124 @@
+Vérification de la syntaxe pour liste_noeud.h :
+gcc -std=c99 -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c liste_noeud.h
+Vérification de la syntaxe pour liste_noeud.c :
+gcc -std=c99 -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c liste_noeud.c
+Vérification de la syntaxe pour dijkstra.h :
+gcc -std=c99 -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c dijkstra.h
+Vérification de la syntaxe pour dijkstra.c :
+gcc -std=c99 -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c dijkstra.c
+
+[le header liste_noeud.h est correctement gardé]
+==code
+
+==endcode
+
+[Définition de liste_noeud_t]
+==code
+liste_noeud_t* t; (void) t;
+==endcode
+
+[liste_noeud_t abstrait]
+==code
+liste_noeud_t t; (void) t;
+==endcode
+<stdin>:4:15: error: variable has incomplete type 'liste_noeud_t' (aka 'struct liste_noeud_t')
+liste_noeud_t t; (void) t;
+              ^
+./liste_noeud.h:5:8: note: forward declaration of 'struct liste_noeud_t'
+struct liste_noeud_t;
+       ^
+1 error generated.
+
+[creer_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); (void) t;
+==endcode
+
+[detruire_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); detruire_liste(&t);
+==endcode
+
+[est_vide_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); bool a = est_vide_liste(t); (void) a;
+==endcode
+
+[contient_noeud_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); bool a = contient_noeud_liste(t, (noeud_id_t) 0); (void) a;
+==endcode
+
+[contient_arrete_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); bool a = contient_arrete_liste(t, (noeud_id_t) 0, (noeud_id_t) 0); (void) a;
+==endcode
+
+[distance_noeud_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); float f = distance_noeud_liste(t, (noeud_id_t)0); (void) f;
+==endcode
+
+[precedent_noeud_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); noeud_id_t n = precedent_noeud_liste(t, (noeud_id_t) 0); (void) n;
+==endcode
+
+[min_noeud_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); noeud_id_t n = min_noeud_liste(t); (void) n;
+==endcode
+
+[inserer_noeud_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); inserer_noeud_liste(t, (noeud_id_t) 0, (noeud_id_t) 0, (float) 0.f);
+==endcode
+
+[changer_noeud_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); changer_noeud_liste(t, (noeud_id_t) 0, (noeud_id_t) 0, (float) 0.f);
+==endcode
+
+[supprimer_noeud_liste correcte]
+==code
+liste_noeud_t* t = creer_liste(); supprimer_noeud_liste(t, (noeud_id_t) 0);
+==endcode
+
+[est_vide_lsite const-correcte]
+==code
+const liste_noeud_t* t = creer_liste(); est_vide_liste(t);
+==endcode
+
+[contient_noeud_liste const-correcte]
+==code
+const liste_noeud_t* t = creer_liste(); contient_noeud_liste(t, (noeud_id_t) 0);
+==endcode
+
+[contient_arrete_liste const-correcte]
+==code
+const liste_noeud_t* t = creer_liste(); contient_arrete_liste(t, (noeud_id_t) 0, (noeud_id_t) 0);
+==endcode
+
+[distance_noeud_liste const-correcte]
+==code
+const liste_noeud_t* t = creer_liste(); distance_noeud_liste(t, (noeud_id_t)0);
+==endcode
+
+[precedent_noeud_liste const-correcte]
+==code
+const liste_noeud_t* t = creer_liste(); precedent_noeud_liste(t, (noeud_id_t) 0);
+==endcode
+
+[min_noeud_liste const-correcte]
+==code
+const liste_noeud_t* t = creer_liste(); min_noeud_liste(t);
+==endcode
+
+[construire_chemin statique]
+==code
+construire_chemin_vers(NULL, NULL, 0);
+==endcode
+<stdin>:4:1: error: implicit declaration of function 'construire_chemin_vers' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+construire_chemin_vers(NULL, NULL, 0);
+^
+1 error generated.
