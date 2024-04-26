@@ -11,6 +11,14 @@ gcc -std=c99 -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c dijkstra.c
 ==code
 
 ==endcode
+In file included from <stdin>:2:
+__tmp_liste_noeud.h:17:18: error: redefinition of ‘x’
+   17 | static const int x = 1;
+      |                  ^
+In file included from <stdin>:1:
+__tmp_liste_noeud.h:17:18: note: previous definition of ‘x’ with type ‘int’
+   17 | static const int x = 1;
+      |                  ^
 
 [Définition de liste_noeud_t]
 ==code
@@ -21,13 +29,10 @@ liste_noeud_t* t; (void) t;
 ==code
 liste_noeud_t t; (void) t;
 ==endcode
-<stdin>:4:15: error: variable has incomplete type 'liste_noeud_t' (aka 'struct liste_noeud_t')
-liste_noeud_t t; (void) t;
-              ^
-./liste_noeud.h:5:8: note: forward declaration of 'struct liste_noeud_t'
-struct liste_noeud_t;
-       ^
-1 error generated.
+<stdin>: In function ‘test’:
+<stdin>:4:15: error: storage size of ‘t’ isn’t known
+<stdin>:4:15: error: unused variable ‘t’ [-Werror=unused-variable]
+cc1: all warnings being treated as errors
 
 [creer_liste correcte]
 ==code
@@ -118,7 +123,6 @@ const liste_noeud_t* t = creer_liste(); min_noeud_liste(t);
 ==code
 construire_chemin_vers(NULL, NULL, 0);
 ==endcode
-<stdin>:4:1: error: implicit declaration of function 'construire_chemin_vers' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
-construire_chemin_vers(NULL, NULL, 0);
-^
-1 error generated.
+<stdin>: In function ‘test’:
+<stdin>:4:1: error: implicit declaration of function ‘construire_chemin_vers’ [-Werror=implicit-function-declaration]
+cc1: all warnings being treated as errors
